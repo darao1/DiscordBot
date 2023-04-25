@@ -1,19 +1,25 @@
 import openai
 import discord
-import os
 
 openai.api_type = "azure"
 openai.api_version = "2023-03-15-preview"
 
 # specifying our server
-GUILD = "{Dara's Server}"
+GUILD = "{Creative-Tech-Apprenticeship}"
 
 # create an object that will control our discord bot
 client = discord.Client(intents=discord.Intents.default())
-# env variables to be read by railway 
-openai.api_key = os.environ["API_KEY"]
-DISCORD_TOKEN = os.environ["DISCORD_TOKEN"]
-openai.api_base = os.environ["API_BASE"]
+
+with open("keys.txt") as f:
+	# converting our text file to a list of lines
+	lines = f.read().split('\n')
+	# openai api key
+	openai.api_key = lines[0]
+	# discord token
+	DISCORD_TOKEN = lines[1]
+	openai.api_base = lines[2]
+# close the file
+f.close()
 
 @client.event
 async def on_ready():
@@ -37,7 +43,7 @@ async def on_message(message):
 		response = openai.ChatCompletion.create(
 			engine="GPT-4",
 			messages=[
-			{"role": "system", "content": "You are a small child, most things amuse you. Make sure all responses are less than 1500 characters"},
+			{"role": "system", "content": "You are a small child, most things amuse you. Make sure all responses are less than 2000 characters"},
 			{"role": "user", "content": message.content}
 			]
 		)
