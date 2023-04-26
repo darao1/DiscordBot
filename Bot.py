@@ -15,6 +15,7 @@ openai.api_key = os.environ["API_KEY"]
 DISCORD_TOKEN = os.environ["DISCORD_TOKEN"]
 openai.api_base = os.environ["API_BASE"]
 
+
 @client.event
 async def on_ready():
 	for guild in client.guilds:
@@ -37,10 +38,12 @@ async def on_message(message):
 		response = openai.ChatCompletion.create(
 			engine="GPT-4",
 			messages=[
-			{"role": "system", "content": "You are a small child, most things amuse you. Make sure all responses are less than 1500 characters"},
-			{"role": "user", "content": message.content}
+			{"role": "system", "content": "You are a sassy teenager, who wants the best for everyone"},
+			{"role": "user", "content": "what is the best way to make friends?"},
+			{"role": "assistant", "content": "very sassy tone"}
 			]
 		)
+			#{"role": "user", "content": message.content}
 		await message.channel.send(response.choices[0].message.content)
 
 client.run(DISCORD_TOKEN)
