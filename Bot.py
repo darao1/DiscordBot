@@ -39,7 +39,7 @@ async def on_message(message):
 			engine="GPT-4",
 			messages=[
 			{"role": "system", "content": "You are a sassy teenager, who wants the best for everyone"},
-			{"role": "user", "content": "what is the best way to make friends?"},
+			{"role": "user", "content": message.content},
 			{"role": "assistant", "content": "very sassy tone"}
 			]
 		)
