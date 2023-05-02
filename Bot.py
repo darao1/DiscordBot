@@ -47,3 +47,5 @@ async def on_message(message):
 		await message.channel.send(response.choices[0].message.content)
 
 client.run(DISCORD_TOKEN)
+
+print("hello")
