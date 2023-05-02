@@ -48,4 +48,6 @@ async def on_message(message):
 
 client.run(DISCORD_TOKEN)
 
+
 print("hello")
+
